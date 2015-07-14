@@ -1,0 +1,9 @@
+<h3>Survey Questions</h3>
+
+		<div class="question" ng-repeat="question in survey">
+			<img ng-src="assets/images/{{question.image}}"/>
+			<h4> {{question.productname}} </h4>
+			<p>
+			{{question.description}}
+			</p>
+		</div>

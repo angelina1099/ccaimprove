@@ -1,0 +1,26 @@
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Welcome to Media survey!</h3>
+        </div>
+        
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <label for="nameinput"> Name </label>
+                    <input type="text" class="form-control" ng-model="user.name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="classinput"> Class </label>
+                    <input type="text" class="form-control" ng-model="user.class" placeholder="Your class">
+                </div>
+                <button class="btn btn-info" ng-click="Login()"> Start </button>
+                <span ng-if="!userfound"> User not found! </span>
+            </form>
+          
+
+            <img id="camera" src="assets/images/camera.jpg" alt="camera" />
+        </div>
+    </div>
+    
+    
+  
