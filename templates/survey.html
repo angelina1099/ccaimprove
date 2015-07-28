@@ -1,9 +1,37 @@
 <h3>Survey Questions</h3>
-
-		<div class="question" ng-repeat="question in survey">
-			<img ng-src="assets/images/{{question.image}}"/>
-			<h4> {{question.productname}} </h4>
-			<p>
-			{{question.description}}
-			</p>
-		</div>
+ 
+<div class="ui grid">
+            <div class="ten wide column"  ng-repeat="question in survey track by $index" ng-show="counter==question.qns_no">
+                    <h4> {{question.question}} </h4>
+            
+                <div class="ui card">
+                        <div class="image">
+                            <img ng-src="assets/images/{{question.image}}"/>
+                        </div>
+                        <div class="content">
+                            <div class="ui celled list">
+                            
+                                    <div class="item" ng-repeat="option in question.options">
+                                        <div class="content" ng-click="select_option(question.qns_no, option.op_no)">{{option.option}} <i class="green checkmark icon" ng-show="survey[question.qns_no-1].response==option.op_no"></i></div>
+                                    </div>
+                            </div>
+                        </div>
+                
+                </div>
+                
+                <button class="ui secondary button" ng-click="prevQn(question.qns_no-1)" ng-show="question.qns_no!=1">Prev</button>
+                <button class="ui button" ng-click="nextQn(question.qns_no+1)">Next</button>
+                
+                
+                
+                <br>
+                <progress value="{{counter}}" max="{{survey.length}}"></progress>
+                
+                <div class="centred">
+                        <button class="orange ui button" ng-click="startagain()" >start again</button>
+                </div> 
+                <div class="centred">
+                        <button class="orange ui button" ng-click="submit()" >Submit</button>
+                </div> 
+            </div>
+</div>

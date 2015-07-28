@@ -35,16 +35,55 @@ angular.module('controllers',[])
  
 })
 
-.controller('surveyCtrl', function($scope){
-/*$http.get('assets/json/survey.json')
-.success(function(data){
-$scope.survey=data;
-console.log(data);
-})
-.error (function (err){
+.controller('surveyCtrl', function($scope,$http,Survey,$document){
+ 
+ $scope.user=JSON.parse(localStorage.getItem('user'));
+ $scope.counter=1;
+$scope.nextQn= function (qn) {
+ console.log(qn);
+  $scope.counter=qn;
+};
+$scope.prevQn= function (qn) {
+ console.log(qn);
+  $scope.counter=qn;
+};
 
-	console.log (err);
-});*/
+ Survey.getQns()
+ .success(function (data){
+  $scope.survey=data;
+  console.log($scope.survey);
+ })
+ .error(function(err){
+  console.log(err);
+ });
+ 
+ $scope.select_option = function (qn,choice) {
+ $scope.survey[qn-1].response=choice;
+ 
+ };
+$scope.startagain = function () {
+ console.log($scope.survey);
+ $scope.counter=1;
+};
+
+$scope.submit = function () {
+ $scope.response=[];
+ for (var i=0;i<$scope.survey.length;i++){
+  var thisresponse={};
+  thisresponse.qns_no=$scope.survey[i].qns_no;
+ thisresponse.response=$scope.survey[i].response;
+ $scope.response.push(thisresponse);
+  
+ }
+ Survey.submitResponse($scope.user,$scope.response)
+ .success(function (data){
+  console.log(data);
+ })
+ .error (function(err){
+  console.log(err);
+ }) ;
+ 
+};
 });
 /*
 .controller('faqCtrl', function($scope){

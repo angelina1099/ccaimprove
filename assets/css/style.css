@@ -6,3 +6,22 @@
         margin-left: auto;
         margin-right: auto;
     }
+.qn-wrapper {
+	
+	min-width:300px;
+	min-height:100px;
+}
+.survey-hide {
+	
+	left:-100%;
+	display:none;
+	opacity:0;
+	transition: all 0.5s;
+}
+
+.survey-show {
+	left:0;
+	display:block;
+	opacity:1;
+	transition: all 0.5s;
+}
